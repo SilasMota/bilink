@@ -1,0 +1,62 @@
+@import "node_modules/pixel-borders/src/styles/pixel-borders.scss";
+
+.topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #7b951b;
+
+    a{
+        text-decoration: none;
+    }
+
+    .logo {
+        font-family: 'Pixelify Sans', sans-serif;
+        padding: 10px;
+        font-size: 50px;
+        font-weight: 400;
+        cursor: pointer;
+        color: white;
+        margin: 10px 20px;
+    }
+
+
+    .searchBar {
+        font-size: large;
+        @include pixel-borders($border-color: #95b520,
+        );
+
+        input,
+        button {
+            border: none;
+            background-color: #a8cd23;
+            font-family: 'Handjet', sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            ::placeholder {
+                color: whitesmoke;
+                opacity: 1;
+            }
+            &:focus{
+                outline: none;
+            }
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #95b520;
+        }
+    }
+
+    .userInfo {
+        margin-right: 40px;
+
+        .avatar {
+            margin: 0;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;     
+            object-fit: cover;      
+        }
+    }
+}

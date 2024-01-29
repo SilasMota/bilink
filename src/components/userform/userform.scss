@@ -1,0 +1,70 @@
+@import "node_modules/pixel-borders/src/styles/pixel-borders.scss";
+
+.formContainer {
+    display: flex;
+    align-items: center;
+    width: 90vh;
+    margin: 20px auto;
+    background-color: #ededed;
+    padding: 20px;
+    justify-content: space-around;
+
+    @include pixel-borders($corner-size: 2,
+        $border-color: #b8b8b8);
+
+    .avatar {
+        position: relative;
+        img {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .postfile{
+            position: absolute;
+            top: 180px;
+            right: 30px;
+
+            .fileInput{
+                cursor: pointer;
+            }
+        }        
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+
+        .formItem{
+            display: flex;
+            flex-direction: column;
+            
+            label{
+                font-size: 16px;
+                color: #767676;
+            }
+
+            input{
+                font-size: 20px;
+                padding: 5px;
+                &:focus{
+                    outline: none;
+                }
+                @include pixel-borders(
+                    $corner-size: 2,
+                    $border-color: #b8b8b8);
+            }
+        }
+
+        .submitButton{
+            cursor: pointer;
+            background-color: #a8cd23;
+            @include pixel-borders(
+                $corner-size: 2,
+                $border-color: #95b520,
+            );
+        }
+    }
+}

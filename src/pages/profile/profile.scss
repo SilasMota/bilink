@@ -1,0 +1,39 @@
+@import "node_modules/pixel-borders/src/styles/pixel-borders.scss";
+
+.profile {
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .userCard {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+            @include pixel-borders($corner-size: 2,
+            $border-color: #b8b8b8);
+            margin: 20px;
+            background-color: #ededed;
+            padding: 20px;
+            width: 90vh;
+
+            .avatar {
+                height: 100px;
+                width: 100px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-left: 10px;
+            }
+
+            .userInfo{
+                .name{
+                    font-size: 40px;
+                }
+                .description{
+                    color: #767676;
+                }
+            }
+            
+        }
+    }
+}
