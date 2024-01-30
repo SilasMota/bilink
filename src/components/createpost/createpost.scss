@@ -1,24 +1,49 @@
 @import "node_modules/pixel-borders/src/styles/pixel-borders.scss";
 
 .createPost {
+    position: relative;
+    animation-name: introright;
+    animation-duration: 1s;
+
     margin: 20px;
-    background-color: #ededed;
+    background-color: #d4eef2;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    width: 90vh;
+    max-width: 90vh;
 
-    @include pixel-borders(
-        $corner-size: 2,
-        $border-color: #b8b8b8);
+    @include pixel-borders($corner-size: 2,
+        $border-color: #bbd1d4);
 
-    .postText {
-        min-width: 100%;
-        max-width: 100%;
-        max-height: 300px;
-        padding: 10px;
-        font-size: 18px;
+    
+    .top{
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        .postText {
+            
+            padding: 20px;
+            font-size: 18px;
+            @include pixel-borders($corner-size: 2,
+                $border-color: #d4eef2);
+    
+            &:focus {
+                outline: none;
+            }
+    
+        }
+    
+        .postImg {
+            margin-top: 20px;
+            border-radius: 8px;
+            height: auto;
+            width: 100%;
+            object-fit: cover;
+    
+        }
     }
+
+    
 
     .postFooter {
         display: flex;
@@ -26,24 +51,25 @@
         align-items: center;
         justify-content: flex-end;
         margin-top: 10px;
+        padding-right: 20px;
 
         .postfile {
             .file {
                 display: flex;
                 align-items: center;
                 padding: 6px;
-                fill: #95b520;
+                fill: #42b4c9;
                 cursor: pointer;
             }
         }
 
-        .postButton{
+        .postButton {
             padding: 4px;
             font-size: 20px;
-            background-color: #a8cd23;
-                cursor: pointer;
-                @include pixel-borders($corner-size: 2,
-                    $border-color: #95b520);
+            background-color: #42b4c9;
+            cursor: pointer;
+            @include pixel-borders($corner-size: 2,
+                $border-color: #42b4c9);
         }
     }
 }

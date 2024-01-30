@@ -1,3 +1,4 @@
+import { Search } from "../../assets/PixelIcons";
 import "./topbar.scss"
 import { Link } from "react-router-dom";
 
@@ -10,7 +11,7 @@ const TopBar = () => {
 
                 <div className="searchBar">
                     <input type="text" placeholder="Search..." />
-                    <button>Search</button>
+                    <button><Search width='20' height='20'/></button>
                 </div>
 
                 <div className="userInfo">

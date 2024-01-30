@@ -6,7 +6,10 @@ const SingIn = () => {
     return ( 
         <div className="signin">
             <TopBar/>
-            <UserForm/>
+            <div className="content">
+                <UserForm/>
+            </div>
+            
         </div>
      );
 }

@@ -9,7 +9,10 @@ const Account = () => {
 
     return (
         <DefaultPage>
-           <UserForm/>
+            <div className="content">
+                <UserForm/>
+            </div>
+           
         </DefaultPage>
     );
 }

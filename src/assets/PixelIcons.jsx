@@ -26,7 +26,7 @@ export function Comments(props) {
   )
 }
 
-export function CommentsSolid(props) {
+export function CommentSolid(props) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
       <path d="M23 8L23 14 22 14 22 16 21 16 21 17 20 17 20 18 18 18 18 19 15 19 15 20 9 20 9 19 7 19 7 20 6 20 6 21 1 21 1 19 2 19 2 18 3 18 3 16 2 16 2 14 1 14 1 8 2 8 2 6 3 6 3 5 4 5 4 4 6 4 6 3 9 3 9 2 15 2 15 3 18 3 18 4 20 4 20 5 21 5 21 6 22 6 22 8 23 8z" />
@@ -99,6 +99,42 @@ export function ImageSolid(props) {
       <path d="M23 20L23 22 22 22 22 23 2 23 2 22 1 22 1 15 2 15 2 16 3 16 3 17 4 17 4 18 5 18 5 19 6 19 6 20 7 20 7 21 8 21 8 20 9 20 9 19 10 19 10 18 11 18 11 17 12 17 12 16 13 16 13 15 14 15 14 14 15 14 15 13 16 13 16 14 17 14 17 15 18 15 18 16 19 16 19 17 20 17 20 18 21 18 21 19 22 19 22 20 23 20z" />
       <path d="M22 2V1H2v1H1v10h1v1h1v1h1v1h1v1h1v1h1v1h1v-1h1v-1h1v-1h1v-1h1v-1h1v-1h1v-1h1v-1h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1V2h-1zM9 6v3H8v1H5V9H4V6h1V5h3v1h1z" />
       <path fill="none" d="M0 0H24V24H0z" />
+    </svg>
+  )
+}
+
+export function Search(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+      <path d="M22 20v-1h-1v-1h-1v-1h-1v-1h-2v-1h1v-2h1V7h-1V5h-1V4h-1V3h-1V2h-2V1H7v1H5v1H4v1H3v1H2v2H1v6h1v2h1v1h1v1h1v1h2v1h6v-1h2v-1h1v2h1v1h1v1h1v1h1v1h2v-1h1v-2h-1zm-10-5v1H8v-1H6v-1H5v-2H4V8h1V6h1V5h2V4h4v1h2v1h1v2h1v4h-1v2h-1v1h-2z" />
+    </svg>
+  )
+}
+
+export function CommentDots(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+      <path d="M19 10L19 12 18 12 18 13 16 13 16 12 15 12 15 10 16 10 16 9 18 9 18 10 19 10z" />
+      <path d="M14 10L14 12 13 12 13 13 11 13 11 12 10 12 10 10 11 10 11 9 13 9 13 10 14 10z" />
+      <path d="M9 10L9 12 8 12 8 13 6 13 6 12 5 12 5 10 6 10 6 9 8 9 8 10 9 10z" />
+      <path d="M22 8V6h-1V5h-1V4h-2V3h-3V2H9v1H6v1H4v1H3v1H2v2H1v6h1v2h1v2H2v1H1v2h5v-1h1v-1h2v1h6v-1h3v-1h2v-1h1v-1h1v-2h1V8h-1zm-1 6h-1v2h-2v1h-3v1H9v-1H7v1H6v1H4v-1h1v-2H4v-2H3V8h1V6h2V5h3V4h6v1h3v1h2v2h1v6z" />
+    </svg>
+  )
+}
+
+export function CommentsSolid(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+      <path d="M5 16L5 17 4 17 4 18 1 18 1 14 2 14 2 12 1 12 1 7 2 7 2 5 4 5 4 4 6 4 6 3 11 3 11 4 13 4 13 5 15 5 15 7 16 7 16 12 15 12 15 14 13 14 13 15 11 15 11 16 5 16z" />
+      <path d="M23 11L23 16 22 16 22 18 23 18 23 22 20 22 20 21 19 21 19 20 13 20 13 19 11 19 11 18 9 18 9 17 12 17 12 16 14 16 14 15 16 15 16 13 17 13 17 7 18 7 18 8 20 8 20 9 22 9 22 11 23 11z" />
+    </svg>
+  )
+}
+
+export function Github(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+      <path d="M23 9L23 15 22 15 22 17 21 17 21 19 20 19 20 20 19 20 19 21 18 21 18 22 16 22 16 23 15 23 15 18 14 18 14 17 15 17 15 16 17 16 17 15 18 15 18 14 19 14 19 9 18 9 18 6 16 6 16 7 15 7 15 8 14 8 14 7 10 7 10 8 9 8 9 7 8 7 8 6 6 6 6 9 5 9 5 14 6 14 6 15 7 15 7 16 9 16 9 18 7 18 7 17 6 17 6 16 4 16 4 17 5 17 5 19 6 19 6 20 9 20 9 23 8 23 8 22 6 22 6 21 5 21 5 20 4 20 4 19 3 19 3 17 2 17 2 15 1 15 1 9 2 9 2 7 3 7 3 5 4 5 4 4 5 4 5 3 7 3 7 2 9 2 9 1 15 1 15 2 17 2 17 3 19 3 19 4 20 4 20 5 21 5 21 7 22 7 22 9 23 9z" />
     </svg>
   )
 }

@@ -1,16 +1,41 @@
 @import "node_modules/pixel-borders/src/styles/pixel-borders.scss";
 
+@keyframes introcomments {
+    0% {
+        top: -100px;
+        opacity: 0;
+    }
+
+    100% {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0.7);
+    }
+
+    50%{
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
 
 .postCard {
     margin: 20px;
-    background-color: #ededed;
+    background-color: #d4eef2;
     padding: 20px;
     display: flex;
     flex-direction: column;
     max-width: 90vh;
 
     @include pixel-borders($corner-size: 2,
-        $border-color: #b8b8b8);
+        $border-color: #bbd1d4);
 
     .userInfo {
         display: flex;
@@ -20,12 +45,14 @@
 
         .avatar {
             border-radius: 50%;
-            height: 32px;
-            width: 32px;
+            height: 60px;
+            width: 60px;
         }
     }
 
-    .postDate{
+    .postDate {
+        font-family: 'Pixelify Sans', sans-serif;
+        font-weight: 100;
         margin: 10px;
         font-size: 14px;
         color: grey;
@@ -44,9 +71,10 @@
 
         .postImg {
             margin: 20px;
-            height: 100%;
+            height: auto;
             width: 100%;
             border-radius: 8px;
+            object-fit: cover;
         }
     }
 
@@ -59,14 +87,110 @@
             display: flex;
             gap: 10px;
             align-items: center;
-            
-            button {
+
+
+            button {                
                 border: none;
                 padding: 5px;
-                fill: #95b520;
+                fill: #42b4c9;
+                background-color: #d4eef2;
                 cursor: pointer;
+            }
+
+            .amount {
+                font-weight: 200;
             }
         }
 
+    }
+}
+
+.buttonIcon{    
+    animation-name: pop;
+    animation-duration: 0.5s;
+}
+
+.commentSection {
+    position: relative;
+    animation-name: introcomments;
+    animation-duration: 1s;
+
+    padding: 20px;
+    margin: 0 40px;
+    background-color: #e0ecf1c9;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .top {
+        margin: 0 20px 20px 20px;
+        width: 100%;
+        display: flex;
+        @include pixel-borders($border-color: #bbd1d4,
+        );
+
+        .commentInput {
+            width: 100%;
+            margin: 0;
+        }
+
+        input,
+        button {
+            border: none;
+            background-color: #d4eef2;
+            font-size: 24px;
+            font-weight: 400;
+
+            ::placeholder {
+                color: whitesmoke;
+                opacity: 1;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #bbd1d4;
+        }
+    }
+
+    @include pixel-borders($corner-size: 2,
+        $border-color: #e0ecf1c9);
+
+    .comments {
+        width: 100%;
+
+        .comment {
+            @include pixel-borders($corner-size: 2,
+                $border-color: aliceblue);
+            background-color: aliceblue;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            margin: 0 10px 10px 10px; 
+            .userInfo {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+
+                .avatar {
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 50%;
+                }
+            }
+
+
+            .commentText {
+                p{
+                    font-size: 12px;
+                }
+                
+            }
+        }
     }
 }

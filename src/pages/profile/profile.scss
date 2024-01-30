@@ -2,23 +2,29 @@
 
 .profile {
     .content {
+        position: relative;
+        animation-name: introright;
+        animation-duration: 1s;
+
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
+        margin: auto;
+        max-width: 90vh;
         .userCard {
             display: flex;
             flex-direction: row;
             align-items: center;
             gap: 40px;
-            @include pixel-borders($corner-size: 2,
-            $border-color: #b8b8b8);
             margin: 20px;
-            background-color: #ededed;
+            max-width: 90vh;
+            @include pixel-borders(
+                $corner-size: 2,            
+                $border-color: #bbd1d4);
+            
+            background-color: #d4eef2;
             padding: 20px;
-            width: 90vh;
-
             .avatar {
-                height: 100px;
                 width: 100px;
                 border-radius: 50%;
                 object-fit: cover;

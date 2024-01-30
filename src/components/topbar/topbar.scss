@@ -1,10 +1,24 @@
 @import "node_modules/pixel-borders/src/styles/pixel-borders.scss";
 
+@keyframes introtop {
+    0% {
+        top: -100px;
+    }
+
+    100% {
+        top: 0px;
+    }
+}
+
 .topBar {
+    position: relative;
+    animation-name: introtop;
+    animation-duration: 1s;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #7b951b;
+    background-color: #42B4C9;
 
     a{
         text-decoration: none;
@@ -12,9 +26,8 @@
 
     .logo {
         font-family: 'Pixelify Sans', sans-serif;
-        padding: 10px;
-        font-size: 50px;
-        font-weight: 400;
+        font-size: 60px;
+        font-weight: 500;
         cursor: pointer;
         color: white;
         margin: 10px 20px;
@@ -23,16 +36,15 @@
 
     .searchBar {
         font-size: large;
-        @include pixel-borders($border-color: #95b520,
+        @include pixel-borders($border-color: #bbd1d4,
         );
 
         input,
         button {
             border: none;
-            background-color: #a8cd23;
-            font-family: 'Handjet', sans-serif;
+            background-color: #d4eef2;
             font-size: 24px;
-            font-weight: 500;
+            font-weight: 400;
             ::placeholder {
                 color: whitesmoke;
                 opacity: 1;
@@ -44,7 +56,7 @@
 
         button {
             cursor: pointer;
-            background-color: #95b520;
+            background-color: #bbd1d4;
         }
     }
 
@@ -53,8 +65,8 @@
 
         .avatar {
             margin: 0;
-            height: 40px;
-            width: 40px;
+            height: 60px;
+            width: 60px;
             border-radius: 50%;     
             object-fit: cover;      
         }

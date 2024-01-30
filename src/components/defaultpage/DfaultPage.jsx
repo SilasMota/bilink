@@ -9,6 +9,7 @@ const DefaultPage = ({ children }) => {
             <div className="bottom">
                 <SideBar/>
                 <div className="content">
+                    
                     {children}
                 </div>
             </div>

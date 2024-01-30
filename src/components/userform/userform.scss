@@ -1,16 +1,21 @@
 @import "node_modules/pixel-borders/src/styles/pixel-borders.scss";
 
 .formContainer {
+
+    position: relative;
+    animation-name: introright;
+    animation-duration: 1.5s;
+
     display: flex;
     align-items: center;
-    width: 90vh;
-    margin: 20px auto;
-    background-color: #ededed;
+    background-color: #d4eef2;
     padding: 20px;
     justify-content: space-around;
+    gap: 64px;
+    margin: 20px auto;
 
     @include pixel-borders($corner-size: 2,
-        $border-color: #b8b8b8);
+        $border-color: #bbd1d4);
 
     .avatar {
         position: relative;
@@ -34,8 +39,8 @@
     form{
         display: flex;
         flex-direction: column;
+        flex-wrap: wrap;
         gap: 5px;
-
 
         .formItem{
             display: flex;
@@ -54,16 +59,16 @@
                 }
                 @include pixel-borders(
                     $corner-size: 2,
-                    $border-color: #b8b8b8);
+                    $border-color: #bbd1d4);
             }
         }
 
         .submitButton{
             cursor: pointer;
-            background-color: #a8cd23;
+            background-color: #42b4c9;
             @include pixel-borders(
                 $corner-size: 2,
-                $border-color: #95b520,
+                $border-color: #42b4c9,
             );
         }
     }

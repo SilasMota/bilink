@@ -1,7 +1,7 @@
 @import "node_modules/pixel-borders/src/styles/pixel-borders.scss";
 
 .loginContainer {
-    background-color: #ededed;
+    background-color: #d4eef2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,7 +10,7 @@
     width: 40vh;
     margin: 20px auto;
     @include pixel-borders($corner-size: 2,
-        $border-color: #b8b8b8);
+        $border-color: #bbd1d4);
 
     .loginForm {
         display: flex;
@@ -34,7 +34,7 @@
                 }
 
                 @include pixel-borders($corner-size: 2,
-                    $border-color: #b8b8b8);
+                    $border-color: #bbd1d4);
             }
         }
 
@@ -51,9 +51,9 @@
             .loginButton {
                 font-size: 20px;
                 cursor: pointer;
-                background-color: #a8cd23;
+                background-color: #42b4c9;
                 @include pixel-borders($corner-size: 2,
-                    $border-color: #95b520,
+                    $border-color: #42b4c9,
                 );
             }
         }
@@ -61,7 +61,7 @@
 
     hr {
         width: 100%;
-        border: solid #b8b8b8;
+        border: solid #bbd1d4;
     }
 
     .googleAuth {
@@ -72,9 +72,9 @@
 
         .googleLogin {
             cursor: pointer;
-            background-color: #a8cd23;
+            background-color: #42b4c9;
             @include pixel-borders($corner-size: 2,
-                $border-color: #95b520,
+                $border-color: #42b4c9,
             );
         }
     }
