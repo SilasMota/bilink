@@ -74,7 +74,6 @@ const PostCard = () => {
                         </div>
                     </div>
                 </div>
-
             }
         </div>
 

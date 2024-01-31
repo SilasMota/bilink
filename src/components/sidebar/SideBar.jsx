@@ -1,8 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CogSolid, Github, HomeSolid, UserSolid, WindowCloseSolid } from "../../assets/PixelIcons";
+import { auth } from "../../config/firebase";
+import { signOut } from "firebase/auth";
 import "./sidebar.scss";
 
 const SideBar = () => {
+    const navigate = useNavigate(); 
+    const handleLogout = () => {
+        signOut(auth).then(() => {
+            navigate("/login");
+          }).catch((error) => {
+            console.log(error);
+          });
+    }
+
     return (
         <div className="sideBar">
             <div className="menu">
@@ -38,12 +49,10 @@ const SideBar = () => {
                         </li>
                     </a>
                     <hr></hr>
-                    <Link to="/login">
-                        <li>
+                        <li onClick={handleLogout}>
                             <WindowCloseSolid width='20' height='20' />
                             <span>Logout</span>
                         </li>
-                    </Link>
                 </ul>
             </div>
         </div>
