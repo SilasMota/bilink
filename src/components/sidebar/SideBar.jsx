@@ -3,11 +3,17 @@ import { CogSolid, Github, HomeSolid, UserSolid, WindowCloseSolid } from "../../
 import { auth } from "../../config/firebase";
 import { signOut } from "firebase/auth";
 import "./sidebar.scss";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/userSlice";
 
 const SideBar = () => {
+
+     const dispatch = useDispatch();
+
     const navigate = useNavigate(); 
     const handleLogout = () => {
         signOut(auth).then(() => {
+            dispatch(logout());
             navigate("/login");
           }).catch((error) => {
             console.log(error);

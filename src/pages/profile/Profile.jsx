@@ -1,12 +1,11 @@
 import "./profile.scss";
 import DefaultPage from "../../components/defaultpage/DfaultPage";
 import PostList from "../../components/postlist/PostList";
-import { auth } from "../../config/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
 
-    const [user] = useAuthState(auth);
+    const currentUser = useSelector((state) => state.user.value);
     return (
         <div className="profile">
 
@@ -14,12 +13,12 @@ const Profile = () => {
                 <div className="content">
                     <div className="userCard">
                         {
-                            user &&
-                            <img src={user?.photoURL || ""} className="avatar" alt="" />
+                            currentUser &&
+                            <img src={currentUser?.imgUrl || currentUser?.photoURL || "./profile-pic.jpg"} className="avatar" alt="" />
                         }
                         <div className="userInfo">
-                            <div className="name">{user?.displayName}</div>
-                            <div className="description">Amet dolor qui sint adipisicing.</div>
+                            <div className="name">{currentUser?.name}</div>
+                            <div className="description">{currentUser?.description}</div>
                         </div>
                     </div>
                     <PostList />

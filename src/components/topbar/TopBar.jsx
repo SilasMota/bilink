@@ -1,13 +1,11 @@
+import { useSelector } from "react-redux";
 import { Search } from "../../assets/PixelIcons";
 import "./topbar.scss"
 import { Link } from "react-router-dom";
-import { auth } from "../../config/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 
 const TopBar = () => {
 
-    const [user] = useAuthState(auth);
-    
+    const currentUser = useSelector((state) => state.user.value);
 
     return (
         <div className="topBar">
@@ -16,7 +14,7 @@ const TopBar = () => {
             </Link>
 
                 {
-                    user &&
+                    currentUser &&
                         <div className="searchBar">
                             <input type="text" placeholder="Search..." />
                             <button><Search width='20' height='20'/></button>
@@ -24,9 +22,9 @@ const TopBar = () => {
                 }
                  
                 {
-                    user &&                    
+                    currentUser &&                    
                         <div className="userInfo">                  
-                            <img src={user?.photoURL || ""} className="avatar" alt="" />
+                            <img src={currentUser?.imgUrl || currentUser?.photoURL || "./profile-pic.jpg"} className="avatar" alt="" />
                         </div>
                     
                 }
