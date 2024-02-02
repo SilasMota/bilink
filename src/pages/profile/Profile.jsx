@@ -21,7 +21,7 @@ const Profile = () => {
                             <div className="description">{currentUser?.description}</div>
                         </div>
                     </div>
-                    <PostList />
+                    <PostList type="user" filter=""/>
                 </div>
             </DefaultPage>
         </div>

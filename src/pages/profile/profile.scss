@@ -8,9 +8,8 @@
 
         display: flex;
         flex-direction: column;
-        align-items: stretch;
         margin: auto;
-        max-width: 90vh;
+        width: 100%;
         .userCard {
             display: flex;
             flex-direction: row;
@@ -24,6 +23,7 @@
             
             background-color: #d4eef2;
             padding: 20px;
+            box-shadow: 10px 10px 10px 1px #4754598a;
             .avatar {
                 width: 100px;
                 height: 100px;

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    value: null
+    value: JSON.parse(localStorage.getItem("bilinkUser")) || null,
 };
 
 export const userSlice = createSlice({
@@ -10,15 +10,17 @@ export const userSlice = createSlice({
     reducers: {
         login: (state, action) => {
             state.value = action.payload;
+            localStorage.setItem("bilinkUser",  JSON.stringify(action.payload));
         },
         logout: (state) => {
             state.value = null;
-            localStorage.removeItem("user");
+            localStorage.removeItem("bilinkUser");
         },
         refresh: (state, action) =>{
             state.value = null;
-            localStorage.removeItem("user");
+            localStorage.removeItem("bilinkUser");
             state.value = action.payload;
+            localStorage.setItem("bilinkUser",  JSON.stringify(action.payload));
         }
     }
 });

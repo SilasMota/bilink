@@ -14,6 +14,8 @@
     gap: 64px;
     margin: 20px auto;
 
+    box-shadow: 10px 10px 10px 1px #4754598a;
+
     @include pixel-borders($corner-size: 2,
         $border-color: #bbd1d4);
 
@@ -41,6 +43,7 @@
         flex-direction: column;
         flex-wrap: wrap;
         gap: 5px;
+        
 
         .formItem{
             display: flex;

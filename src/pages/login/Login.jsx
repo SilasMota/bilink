@@ -33,16 +33,14 @@ const Login = () => {
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
 
-                if (docSnap.exists()) {
+                if (!docSnap.exists()) {
                     setUser(user)
                     .then(() => {           
-                        console.log(docSnap.data());   
-                        dispatch(login(docSnap.data()));
+                        dispatch(login(user));
                     });
                 } else {
-                    // docSnap.data() will be undefined in this case
-                    console.log("Doc not found");  
-                    dispatch(login(user));
+                    docSnap.data()
+                    dispatch(login(docSnap.data()));
                 }
                 
                 navigate('/');

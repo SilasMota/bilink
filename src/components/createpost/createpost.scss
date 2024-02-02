@@ -10,7 +10,9 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    max-width: 90vh;
+
+    box-shadow: 10px 10px 10px 1px #4754598a;
+    
 
     @include pixel-borders($corner-size: 2,
         $border-color: #bbd1d4);
@@ -21,12 +23,13 @@
         flex-direction: column;
         padding: 20px;
         .postText {
-            
+            resize: vertical;
             padding: 20px;
             font-size: 18px;
+            min-height: 10vh;
             @include pixel-borders($corner-size: 2,
                 $border-color: #d4eef2);
-    
+            
             &:focus {
                 outline: none;
             }
@@ -70,6 +73,18 @@
             cursor: pointer;
             @include pixel-borders($corner-size: 2,
                 $border-color: #42b4c9);
+
+            &:hover{
+                animation-name: shake;
+                animation-duration: 0.8s;
+                animation-timing-function: ease-in-out;
+                animation-iteration-count: infinite;
+            }
+            
+            &:active{
+                animation-name: pop;
+                animation-duration: 0.5s;
+            }
         }
     }
 }

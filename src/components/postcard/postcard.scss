@@ -26,28 +26,76 @@
     }
 }
 
+@keyframes shake {
+    0% {
+        rotate: none;
+        transform: scale(1.1);
+    }
+
+    25%{
+        rotate: -20deg;
+        transform: scale(1.3);
+    }
+
+    50%{
+        rotate: none;
+        transform: scale(1.3);
+    }
+
+    75%{
+        rotate: 20deg;
+        transform: scale(1.1);
+    }
+
+    100% {
+        rotate: none;
+        transform: scale(1);
+    }
+}
+
 .postCard {
     margin: 20px;
     background-color: #d4eef2;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    max-width: 90vh;
+    box-shadow: 10px 10px 10px 1px #4754598a;
 
     @include pixel-borders($corner-size: 2,
         $border-color: #bbd1d4);
 
-    .userInfo {
+    .postHeader{
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        margin: 10px;
-        gap: 10px;
 
-        .avatar {
-            border-radius: 50%;
-            height: 60px;
-            width: 60px;
+        .deleteButton{
+            background-color: transparent;
+            border: none;
+
+            &:hover{
+                animation-name: shake;
+                animation-duration: 0.5s;
+                animation-timing-function: ease;
+                animation-iteration-count: infinite;
+                fill: red;
+                cursor: pointer;
+            }
         }
+
+        .userInfo {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+            gap: 10px;
+
+            .avatar {
+                border-radius: 50%;
+                height: 60px;
+                width: 60px;
+            }
+        }
+
     }
 
     .postDate {
@@ -63,8 +111,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: stretch;
 
         .postText {
+            margin: auto;
+            width: 100%;
+            align-self: flex-start;
             text-align: justify;
             font-size: 18px;
         }
@@ -72,7 +124,7 @@
         .postImg {
             margin: 20px;
             height: auto;
-            width: 100%;
+            max-width: 95%;
             border-radius: 8px;
             object-fit: cover;
         }
@@ -107,7 +159,14 @@
 
 .buttonIcon{    
     animation-name: pop;
-    animation-duration: 0.5s;
+    animation-duration: 0.8s;
+
+    &:hover{
+        animation-name: shake;
+        animation-duration: 0.8s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+    }
 }
 
 .commentSection {

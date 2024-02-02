@@ -1,11 +1,19 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Search } from "../../assets/PixelIcons";
 import "./topbar.scss"
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { clear, setFilter } from "../../redux/filterSlice";
 
 const TopBar = () => {
 
     const currentUser = useSelector((state) => state.user.value);
+    const [search, setSearch] = useState("");
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(clear());
+    })
 
     return (
         <div className="topBar">
@@ -16,8 +24,8 @@ const TopBar = () => {
                 {
                     currentUser &&
                         <div className="searchBar">
-                            <input type="text" placeholder="Search..." />
-                            <button><Search width='20' height='20'/></button>
+                            <input type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Search..." />
+                            <button onClick={() => dispatch(setFilter(search))}><Search width='20' height='20'/></button>
                         </div>
                 }
                  

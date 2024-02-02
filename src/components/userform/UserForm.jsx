@@ -49,10 +49,11 @@ const UserForm = () => {
         } else {
             if (file) {
                 await setUserImg(file, newUser);
+            }else{
+                setUser(newUser);
+                dispatch(refresh(newUser));
+                navigate("/profile");
             }
-            // setUser(newUser);
-            // dispatch(refresh(newUser));
-            // navigate("/profile");
         }
     }
 
@@ -64,7 +65,7 @@ const UserForm = () => {
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 setPerc(progress);
-                console.log('Upload is ' + progress + '% done');
+                // console.log('Upload is ' + progress + '% done');
                 switch (snapshot.state) {
                     case 'paused':
                         console.log('Upload is paused');
@@ -83,8 +84,7 @@ const UserForm = () => {
                 // Handle successful uploads on complete
                 // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    console.log(user);
-                    console.log('File available at', downloadURL);
+                    // console.log('File available at', downloadURL);
                     setUser({ ...user, imgUrl: downloadURL });
                     dispatch(refresh({ ...user, imgUrl: downloadURL }));
                     navigate("/profile");

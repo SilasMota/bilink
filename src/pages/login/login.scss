@@ -9,6 +9,7 @@
     padding: 20px;
     width: 40vh;
     margin: 20px auto;
+    box-shadow: 10px 10px 10px 1px #4754598a;
     @include pixel-borders($corner-size: 2,
         $border-color: #bbd1d4);
 
