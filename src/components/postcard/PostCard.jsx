@@ -1,34 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Thumbsup, Comments, CommentDots, ThumbsupSolid, CommentsSolid, TrashAltSolid } from "../../assets/PixelIcons";
 import "./postcard.scss";
 import { useSelector } from "react-redux";
 import { ref, deleteObject } from "firebase/storage";
-import { doc, deleteDoc } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where, deleteDoc, doc } from "firebase/firestore";
 import { db, storage } from "../../config/firebase"
 
 
 const PostCard = ({ post }) => {
 
-    const [commentsOn, setCommentsOn] = useState(false);
-    const [postLiked, setPostLiked] = useState(false);
-
     const currentUser = useSelector((state) => state.user.value);
+    const [commentsOn, setCommentsOn] = useState(false);
 
-    const deleteUser = async () => {
+    const [likes, setLikes] = useState([]);
+    const hasLiked = likes?.find((like) => like.uid === currentUser.uid);
+    const likeRef = collection(db, "likes");
+    const likesDoc = query(likeRef, where("postId", "==", post.id));
+
+    const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState();
+    const commentsRef = collection(db, "comments");
+    const commentsDoc = query(commentsRef, where("postId", "==", post.id));
+
+    const deletePost = async () => {
         await deleteDoc(doc(db, "posts", post.id));
     }
 
     const handleDelete = async () => {
+
+        const commentToDeleteQuery = query(
+            commentsRef,
+            where("postId","==",post.id)
+        );
+        const commentToDeleteData = await getDocs(commentToDeleteQuery);
+        commentToDeleteData.docs.forEach(async comment => {
+            await deleteDoc(doc(db,"comments", comment.id));
+        });
+        
+
+        const likeToDeleteQuery = query(
+            likeRef,
+            where("postId","==",post.id)
+        );
+        const likeToDeleteData = await getDocs(likeToDeleteQuery);
+        likeToDeleteData.docs.forEach(async like => {
+            await deleteDoc(doc(db,"likes", like.id));
+        });
+
         if (post.imgUrl) {
             const desertRef = ref(storage, 'images/posts/' + post.id);
             deleteObject(desertRef).then(async () => {
-                await deleteUser(post)
+                await deletePost(post)
                 window.location.reload(false);
             }).catch((error) => {
                 console.log(error);
             });
         } else {
-            await deleteUser(post);
+            await deletePost(post);
             window.location.reload(false);
         }
     }
@@ -52,6 +80,79 @@ const PostCard = ({ post }) => {
         return formattedDate;
     }
 
+    const addLike = async () => {
+        await addDoc(likeRef, { uid: currentUser?.uid, postId: post.id });
+        getLikes();
+    }
+
+    const removeLike = async () => {
+        try {
+            const commentToDeleteQuery = query(
+                likeRef,
+                where("postId", "==", post.id),
+                where("uid", "==", currentUser?.uid)
+            );
+            const commentToDeleteData = await getDocs(commentToDeleteQuery);
+            const commentToDelete = doc(db, "likes", commentToDeleteData.docs[0].id);
+            await deleteDoc(commentToDelete);
+            getLikes();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const getLikes = async () => {
+        const querySnapshot = await getDocs(likesDoc);
+        const list = [];
+        querySnapshot.forEach(async (doc) => {
+            list.push(doc.data());
+        });
+        setLikes(list);
+    }
+
+    const addComment = async () => {
+        if (!newComment) {
+            return;
+        }
+
+        const comment = {
+            commentText: newComment,
+            postId: post.id,
+            uid: currentUser.uid,
+            userImg: currentUser.imgUrl,
+            userName: currentUser.name
+        };
+        await addDoc(commentsRef, comment);
+        getComments();
+        document.getElementById('commentInput').value = '';
+    }
+
+    const removeComment = async (comment) => {
+        try {
+            const commentToDelete = doc(db, "comments", comment.id);
+            await deleteDoc(commentToDelete);
+            getComments();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const getComments = async () => {
+        const querySnapshot = await getDocs(commentsDoc);
+        const list = [];
+        querySnapshot.forEach(async (doc) => {
+            list.push({...doc.data(), id: doc.id});
+        });
+
+        setComments(list);
+    }
+
+
+    useEffect((() => {
+        getLikes();
+        getComments();
+    }),[]);
+
     return (
         <div>
             <div className="postCard">
@@ -73,14 +174,14 @@ const PostCard = ({ post }) => {
                 <div className="postFooter">
 
                     <div className="likes">
-                        <button onClick={() => setPostLiked(!postLiked)}>
-                            {!postLiked ?
+                        <button onClick={!hasLiked ? addLike : removeLike}>
+                            {!hasLiked ?
                                 <Thumbsup width='30' height='30' className="buttonIcon" />
                                 :
                                 <ThumbsupSolid width='30' height='30' className="buttonIcon" />
                             }
                         </button>
-                        <span className="amount">43</span>
+                        <span className="amount">{likes?.length > 0 ? likes?.length : ""}</span>
                     </div>
 
                     <span className="comments" onClick={() => setCommentsOn(!commentsOn)}>
@@ -91,7 +192,7 @@ const PostCard = ({ post }) => {
                                 <CommentsSolid width='30' height='30' className="buttonIcon" />
                             }
                         </button>
-                        <span className="amount">2</span>
+                        <span className="amount">{comments?.length > 0 ? comments?.length : ""}</span>
                     </span>
                 </div>
 
@@ -100,29 +201,30 @@ const PostCard = ({ post }) => {
             {commentsOn &&
                 <div className="commentSection">
                     <div className="top">
-                        <input className="commentInput" placeholder="Make a Comment" type="text" />
-                        <button className="innputButton"><CommentDots width="30" height="30" /></button>
+                        <input className="commentInput" id="commentInput" onChange={(e) => setNewComment(e.target.value)} placeholder="Make a Comment" type="text" />
+                        <button className="innputButton" onClick={() => addComment()}><CommentDots width="30" height="30" /></button>
+
                     </div>
                     <div className="comments">
-                        <div className="comment">
-                            <div className="userInfo">
-                                <img src="https://thispersondoesnotexist.com/" className="avatar" alt="" />
-                                <p className="userName">John Doe</p>
-                            </div>
-                            <div className="commentText">
-                                <p>Fugiat do cillum consectetur duis irure duis tempor.</p>
-                            </div>
-                        </div>
-
-                        <div className="comment">
-                            <div className="userInfo">
-                                <img src="https://thispersondoesnotexist.com/" className="avatar" alt="" />
-                                <p className="userName">John Doe</p>
-                            </div>
-                            <div className="commentText">
-                                <p>Fugiat do cillum consectetur duis irure duis tempor.</p>
-                            </div>
-                        </div>
+                        {comments &&
+                            comments.map((comment) => (
+                                <div className="comment" key={comment.id}>
+                                    <div className="commentHeader">
+                                        <div className="userInfo">
+                                            <img src={comment.userImg || "./profile-pic.jpg"} className="avatar" alt="" />
+                                            <p className="userName">{comment.userName}</p>
+                                        </div>
+                                        {
+                                            (currentUser.uid === post?.uid) &&
+                                            <button className="deleteButton" onClick={() => removeComment(comment)}> <TrashAltSolid width='20' height='20' /></button>
+                                        }
+                                    </div>
+                                    <div className="commentText">
+                                        <p>{comment.commentText}</p>
+                                    </div>
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
             }

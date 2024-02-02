@@ -53,6 +53,20 @@
     }
 }
 
+.deleteButton{
+    background-color: transparent;
+    border: none;
+
+    &:hover{
+        animation-name: shake;
+        animation-duration: 0.5s;
+        animation-timing-function: ease;
+        animation-iteration-count: infinite;
+        fill: red;
+        cursor: pointer;
+    }
+}
+
 .postCard {
     margin: 20px;
     background-color: #d4eef2;
@@ -63,6 +77,9 @@
 
     @include pixel-borders($corner-size: 2,
         $border-color: #bbd1d4);
+
+        
+    
 
     .postHeader{
         display: flex;
@@ -230,23 +247,30 @@
             padding: 5px;
             display: flex;
             flex-direction: column;
-            margin: 0 10px 10px 10px; 
-            .userInfo {
-                display: flex;
-                align-items: center;
-                gap: 8px;
+            margin: 0 10px 10px 10px;
 
-                .avatar {
-                    height: 40px;
-                    width: 40px;
-                    border-radius: 50%;
+            .commentHeader{
+                display: flex;
+                justify-content: space-between;
+                .userInfo {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+    
+                    .avatar {
+                        height: 40px;
+                        width: 40px;
+                        border-radius: 50%;
+                    }
                 }
             }
+            
 
 
             .commentText {
+                margin: 5px;
                 p{
-                    font-size: 12px;
+                    font-size: 16px;
                 }
                 
             }
