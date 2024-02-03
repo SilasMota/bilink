@@ -59,7 +59,7 @@ const CreatePost = () => {
         const post = {
             postText: text,
             userName: currentUser.name,
-            userImg: currentUser.imgUrl,
+            userImg: currentUser.imgUrl || currentUser.photoURL || "",
             uid: currentUser.uid,
             postDate: new Date().toJSON()
         }

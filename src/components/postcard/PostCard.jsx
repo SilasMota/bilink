@@ -119,7 +119,7 @@ const PostCard = ({ post }) => {
             commentText: newComment,
             postId: post.id,
             uid: currentUser.uid,
-            userImg: currentUser.imgUrl,
+            userImg: currentUser.imgUrl || currentUser.photoURL || "",
             userName: currentUser.name
         };
         await addDoc(commentsRef, comment);
@@ -215,7 +215,7 @@ const PostCard = ({ post }) => {
                                             <p className="userName">{comment.userName}</p>
                                         </div>
                                         {
-                                            (currentUser.uid === post?.uid) &&
+                                            (currentUser.uid === comment?.uid || post.uid === currentUser?.uid) &&
                                             <button className="deleteButton" onClick={() => removeComment(comment)}> <TrashAltSolid width='20' height='20' /></button>
                                         }
                                     </div>

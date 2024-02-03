@@ -76,9 +76,7 @@
     box-shadow: 10px 10px 10px 1px #4754598a;
 
     @include pixel-borders($corner-size: 2,
-        $border-color: #bbd1d4);
-
-        
+        $border-color: #bbd1d4);   
     
 
     .postHeader{
@@ -110,6 +108,7 @@
                 border-radius: 50%;
                 height: 60px;
                 width: 60px;
+                object-fit: cover;
             }
         }
 
@@ -260,7 +259,8 @@
                     .avatar {
                         height: 40px;
                         width: 40px;
-                        border-radius: 50%;
+                        border-radius: 50%;     
+                        object-fit: cover;
                     }
                 }
             }
